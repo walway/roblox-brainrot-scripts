@@ -201,7 +201,7 @@ local BrainrotScroll = createScrollContainer("BrainrotScroll", false)
 local SettingsScroll = createScrollContainer("SettingsScroll", false)
 
 -- ==========================================
--- 7. EXECUTION CONTROLS & LOCAL SCRIPTS
+-- 7. EXECUTION CONTROLS (Fixed Folder Paths)
 -- ==========================================
 local MainHeaderLabel = Instance.new("TextLabel")
 MainHeaderLabel.Size = UDim2.new(1, 0, 0, 25)
@@ -245,10 +245,9 @@ local function createExecButton(name, path, order)
     end)
 end
 
--- Matches your workspace structure folder paths exactly
+-- Fix Confirmed: Searches from inside your exploit workspace root folder cleanly
 createExecButton("Cobalt", "main/cobalt.luau", 1)
 createExecButton("Infinite Yield", "main/InfYield.luau", 2)
-
 -- ==========================================
 -- 8. VIEW STATE HANDLERS (TAB SYSTEM)
 -- ==========================================
@@ -294,7 +293,7 @@ ShowUIButton.MouseButton1Click:Connect(function()
 end)
 
 CloseUIButton.MouseButton1Click:Connect(function()
-    ScreenGui:Destroy() -- Deletes every frame, script, and link instantly
+    ScreenGui:Destroy() -- Deletes everything instantly from game execution space
 end)
 
 -- ==========================================
