@@ -201,7 +201,7 @@ local BrainrotScroll = createScrollContainer("BrainrotScroll", false)
 local SettingsScroll = createScrollContainer("SettingsScroll", false)
 
 -- ==========================================
--- 7. EXECUTION CONTROLS (Fixed Folder Paths)
+-- 7. EXECUTION CONTROLS (Fixed to Web Loadstrings)
 -- ==========================================
 local MainHeaderLabel = Instance.new("TextLabel")
 MainHeaderLabel.Size = UDim2.new(1, 0, 0, 25)
@@ -213,8 +213,7 @@ MainHeaderLabel.Font = Enum.Font.GothamBold
 MainHeaderLabel.TextXAlignment = Enum.TextXAlignment.Left
 MainHeaderLabel.LayoutOrder = 0
 MainHeaderLabel.Parent = HomeScroll
-
-local function createExecButton(name, path, order)
+local function createExecButton(name, url, order)
     local btn = Instance.new("TextButton")
     btn.Size = UDim2.new(1, -4, 0, 45)
     btn.BackgroundColor3 = COLORS.RowBg
@@ -230,24 +229,20 @@ local function createExecButton(name, path, order)
     btnCorner.Parent = btn
     
     btn.MouseButton1Click:Connect(function()
-        if readfile and loadstring then
-            local successRun, err = pcall(function()
-                local codeString = readfile(path)
-                local compiledFunc = loadstring(codeString)
-                compiledFunc()
-            end)
-            if not successRun then
-                print("Execution Error on " .. name .. ": " .. tostring(err))
-            end
-        else
-            print("Executor not supported! (Missing readfile/loadstring functions)")
+        -- Changed execution to dynamically pull from your desired URLs instead of local files
+        local successRun, err = pcall(function()
+            loadstring(game:HttpGet(url))()
+        end)
+        if not successRun then
+            print("Execution Error on " .. name .. ": " .. tostring(err))
         end
     end)
 end
 
--- Fix Confirmed: Searches from inside your exploit workspace root folder cleanly
-createExecButton("Cobalt", "workspace/main/cobalt.luau", 1)
-createExecButton("Infinite Yield", "workspace/main/InfYield.luau", 2)
+-- Re-bound specifically to download directly from the target web repositories cleanly
+createExecButton("Cobalt", "https://github.com", 1)
+createExecButton("Infinite Yield", "https://githubusercontent.com", 2)
+
 -- ==========================================
 -- 8. VIEW STATE HANDLERS (TAB SYSTEM)
 -- ==========================================
