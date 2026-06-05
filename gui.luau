@@ -240,8 +240,8 @@ local function createExecButton(name, url, order)
 end
 
 -- Re-bound specifically to download directly from the target web repositories cleanly
-createExecButton("Cobalt", "https://github.com", 1)
-createExecButton("Infinite Yield", "https://githubusercontent.com", 2)
+createExecButton("Cobalt", "https://raw.githubusercontent.com/notpoiu/cobalt/releases/latest/download/Cobalt.luau", 1)
+createExecButton("Infinite Yield", "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", 2)
 
 -- ==========================================
 -- 8. VIEW STATE HANDLERS (TAB SYSTEM)
