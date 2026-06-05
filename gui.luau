@@ -246,8 +246,8 @@ local function createExecButton(name, path, order)
 end
 
 -- Fix Confirmed: Searches from inside your exploit workspace root folder cleanly
-createExecButton("Cobalt", "main/cobalt.luau", 1)
-createExecButton("Infinite Yield", "main/InfYield.luau", 2)
+createExecButton("Cobalt", "workspace/main/cobalt.luau", 1)
+createExecButton("Infinite Yield", "workspace/main/InfYield.luau", 2)
 -- ==========================================
 -- 8. VIEW STATE HANDLERS (TAB SYSTEM)
 -- ==========================================
